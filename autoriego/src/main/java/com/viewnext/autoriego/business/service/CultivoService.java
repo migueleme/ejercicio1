@@ -3,19 +3,20 @@ package com.viewnext.autoriego.business.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.viewnext.autoriego.persistence.model.Cultivo;
+import com.viewnext.autoriego.view.model.CultivoDTO;
 
 /**
  * Servicio que se encarga de gestionar los cultivos
+ * 
  * @author 0017011
  *
  */
 public interface CultivoService {
 
-	public List<Cultivo> getAll();
+	public List<CultivoDTO> getAll();
 
-	public Cultivo save(Cultivo Cultivo);
+	public CultivoDTO save(CultivoDTO cultivo);
 
-	public Optional<Cultivo> get(String id);
+	public Optional<CultivoDTO> get(String id);
 
 }

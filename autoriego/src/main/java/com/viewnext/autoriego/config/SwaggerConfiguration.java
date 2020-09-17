@@ -11,13 +11,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfiguration {                                    
-    @Bean
-    public Docket buildDocket() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.viewnext.autoriego.view"))
-                .paths(PathSelectors.any())
-                .build();
-    }
+public class SwaggerConfiguration {
+	@Bean
+	public Docket buildDocket() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.basePackage("com.viewnext.autoriego.view")).paths(PathSelectors.any())
+				.build();
+	}
 }

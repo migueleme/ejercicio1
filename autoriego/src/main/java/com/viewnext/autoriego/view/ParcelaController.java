@@ -12,39 +12,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viewnext.autoriego.business.service.ParcelaService;
-import com.viewnext.autoriego.persistence.model.Parcela;
+import com.viewnext.autoriego.view.model.ParcelaDTO;
 
 @RestController
 @RequestMapping("parcela")
 public class ParcelaController {
+
 	@Autowired
-	ParcelaService parcelaService;
+	private ParcelaService parcelaService;
+
 	@GetMapping
-	ResponseEntity<List<Parcela>> getAll(){
-		ResponseEntity<List<Parcela>> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<List<Parcela>>(parcelaService.getAll(), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<List<ParcelaDTO>> getAll() {
+		ResponseEntity<List<ParcelaDTO>> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<List<ParcelaDTO>>(parcelaService.getAll(), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;
 	}
+
 	@GetMapping("/{id}")
-	ResponseEntity<Parcela> get(@PathVariable int id){
-		ResponseEntity<Parcela> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<Parcela>(parcelaService.get(id).get(), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<ParcelaDTO> get(@PathVariable int id) {
+		ResponseEntity<ParcelaDTO> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<ParcelaDTO>(parcelaService.get(id).get(), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;
 	}
+
 	@PostMapping
-	ResponseEntity<Parcela> post(Parcela parcela){
-		ResponseEntity<Parcela> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<Parcela>(parcelaService.save(parcela), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<ParcelaDTO> post(ParcelaDTO parcela) {
+		ResponseEntity<ParcelaDTO> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<ParcelaDTO>(parcelaService.save(parcela), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;

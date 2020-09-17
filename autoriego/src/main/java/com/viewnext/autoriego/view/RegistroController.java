@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viewnext.autoriego.business.service.RegistroService;
-import com.viewnext.autoriego.persistence.model.Registro;
+import com.viewnext.autoriego.view.model.RegistroDTO;
 
 @RestController
 @RequestMapping("registro")
 public class RegistroController {
 	@Autowired
-	RegistroService registroService;
-	
+	private RegistroService registroService;
+
 	@GetMapping
-	public ResponseEntity<List<Registro>> obtenerRegistro(){
-		ResponseEntity<List<Registro>> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<List<Registro>>(registroService.getAll(), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<List<RegistroDTO>> obtenerRegistro() {
+		ResponseEntity<List<RegistroDTO>> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<>(registroService.getAll(), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;

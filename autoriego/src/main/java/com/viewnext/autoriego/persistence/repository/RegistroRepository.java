@@ -2,8 +2,8 @@ package com.viewnext.autoriego.persistence.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.viewnext.autoriego.persistence.model.Registro;
+import com.viewnext.autoriego.persistence.model.RegistroEntity;
 
-public interface RegistroRepository extends CrudRepository<Registro, Integer>{
+public interface RegistroRepository extends CrudRepository<RegistroEntity, Integer> {
 
 }

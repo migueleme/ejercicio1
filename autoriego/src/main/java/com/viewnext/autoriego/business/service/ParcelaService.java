@@ -1,18 +1,16 @@
 package com.viewnext.autoriego.business.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
-import com.viewnext.autoriego.persistence.model.Parcela;
-
+import com.viewnext.autoriego.view.model.ParcelaDTO;
 
 public interface ParcelaService {
 
-	public List<Parcela> getAll();
+	public List<ParcelaDTO> getAll();
 
-	public Optional<Parcela> get(int id);
+	public Optional<ParcelaDTO> get(int id);
 
-	public Parcela save(Parcela parcela);
+	public ParcelaDTO save(ParcelaDTO parcela);
 
 }

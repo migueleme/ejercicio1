@@ -12,39 +12,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viewnext.autoriego.business.service.MangueraService;
-import com.viewnext.autoriego.persistence.model.Manguera;
+import com.viewnext.autoriego.view.model.MangueraDTO;
 
 @RestController
 @RequestMapping("manguera")
 public class MangueraController {
+
 	@Autowired
-	MangueraService mangueraService;
+	private MangueraService mangueraService;
+
 	@GetMapping
-	ResponseEntity<List<Manguera>> getAll(){
-		ResponseEntity<List<Manguera>> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<List<Manguera>>(mangueraService.getAll(), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<List<MangueraDTO>> getAll() {
+		ResponseEntity<List<MangueraDTO>> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<List<MangueraDTO>>(mangueraService.getAll(), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;
 	}
+
 	@GetMapping("/{id}")
-	ResponseEntity<Manguera> get(@PathVariable int id){
-		ResponseEntity<Manguera> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<Manguera>(mangueraService.get(id).get(), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<MangueraDTO> get(@PathVariable int id) {
+		ResponseEntity<MangueraDTO> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<MangueraDTO>(mangueraService.get(id).get(), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;
 	}
+
 	@PostMapping
-	ResponseEntity<Manguera> post(Manguera Manguera){
-		ResponseEntity<Manguera> responseEntity;
-		try{
-			responseEntity = new ResponseEntity<Manguera>(mangueraService.save(Manguera), HttpStatus.OK);
-		}catch(Exception e){
+	public ResponseEntity<MangueraDTO> post(MangueraDTO Manguera) {
+		ResponseEntity<MangueraDTO> responseEntity;
+		try {
+			responseEntity = new ResponseEntity<MangueraDTO>(mangueraService.save(Manguera), HttpStatus.OK);
+		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return responseEntity;

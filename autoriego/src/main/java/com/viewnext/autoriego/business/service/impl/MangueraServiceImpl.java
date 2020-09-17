@@ -5,30 +5,39 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.viewnext.autoriego.business.mapper.MangueraMapper;
 import com.viewnext.autoriego.business.service.MangueraService;
-import com.viewnext.autoriego.persistence.model.Manguera;
 import com.viewnext.autoriego.persistence.repository.MangueraRepository;
+import com.viewnext.autoriego.view.model.MangueraDTO;
 
 @Service
 public class MangueraServiceImpl implements MangueraService {
+
 	@Autowired
-	MangueraRepository mangueraRepository;
+	private MangueraRepository mangueraRepository;
+
+	private MangueraMapper mangueraMapper = Mappers.getMapper(MangueraMapper.class);
 
 	@Override
-	public List<Manguera> getAll() {
-		return StreamSupport.stream(mangueraRepository.findAll().spliterator(), false).collect(Collectors.toList());
+	public List<MangueraDTO> getAll() {
+		return StreamSupport.stream(mangueraRepository.findAll().spliterator(), false)
+				.map(mangueraMapper::mangueraEntityToMangueraDTO).collect(Collectors.toList());
 	}
 
 	@Override
-	public Manguera save(Manguera manguera) {
-		return this.mangueraRepository.save(manguera);
+	public MangueraDTO save(MangueraDTO manguera) {
+		return mangueraMapper.mangueraEntityToMangueraDTO(
+				mangueraRepository.save(mangueraMapper.mangueraDTOToMangueraEntity(manguera)));
+
 	}
 
 	@Override
-	public Optional<Manguera> get(int id) {
-		return mangueraRepository.findById(id);
+	public Optional<MangueraDTO> get(int id) {
+		return mangueraRepository.findById(id).map(mangueraMapper::mangueraEntityToMangueraDTO);
 	}
+
 }
