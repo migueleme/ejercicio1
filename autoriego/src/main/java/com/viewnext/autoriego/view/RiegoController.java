@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viewnext.autoriego.business.service.RiegoService;
+/**
+ * Controller que se encarga de manejar los procesos de riego
+ * @author 0017011
+ *
+ */
 
 @RestController
 @RequestMapping("/riego")
@@ -15,7 +20,10 @@ public class RiegoController {
 
 	@Autowired
 	private RiegoService riegoService;
-
+	/**
+	 * Lanza un proceso de riego
+	 * 
+	 */
 	@GetMapping("/regar")
 	public ResponseEntity<String> regar() {
 		ResponseEntity<String> responseEntity;

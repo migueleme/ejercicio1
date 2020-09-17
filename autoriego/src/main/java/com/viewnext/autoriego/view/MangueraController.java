@@ -25,7 +25,7 @@ public class MangueraController {
 	public ResponseEntity<List<MangueraDTO>> getAll() {
 		ResponseEntity<List<MangueraDTO>> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<List<MangueraDTO>>(mangueraService.getAll(), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(mangueraService.getAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -36,7 +36,7 @@ public class MangueraController {
 	public ResponseEntity<MangueraDTO> get(@PathVariable int id) {
 		ResponseEntity<MangueraDTO> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<MangueraDTO>(mangueraService.get(id).get(), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(mangueraService.get(id).orElse(new MangueraDTO()), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -44,10 +44,10 @@ public class MangueraController {
 	}
 
 	@PostMapping
-	public ResponseEntity<MangueraDTO> post(MangueraDTO Manguera) {
+	public ResponseEntity<MangueraDTO> post(MangueraDTO manguera) {
 		ResponseEntity<MangueraDTO> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<MangueraDTO>(mangueraService.save(Manguera), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(mangueraService.save(manguera), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

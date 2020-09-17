@@ -25,7 +25,7 @@ public class ParcelaController {
 	public ResponseEntity<List<ParcelaDTO>> getAll() {
 		ResponseEntity<List<ParcelaDTO>> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<List<ParcelaDTO>>(parcelaService.getAll(), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(parcelaService.getAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -36,7 +36,7 @@ public class ParcelaController {
 	public ResponseEntity<ParcelaDTO> get(@PathVariable int id) {
 		ResponseEntity<ParcelaDTO> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<ParcelaDTO>(parcelaService.get(id).get(), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(parcelaService.get(id).orElse(new ParcelaDTO()), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -47,7 +47,7 @@ public class ParcelaController {
 	public ResponseEntity<ParcelaDTO> post(ParcelaDTO parcela) {
 		ResponseEntity<ParcelaDTO> responseEntity;
 		try {
-			responseEntity = new ResponseEntity<ParcelaDTO>(parcelaService.save(parcela), HttpStatus.OK);
+			responseEntity = new ResponseEntity<>(parcelaService.save(parcela), HttpStatus.OK);
 		} catch (Exception e) {
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
